@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 
+//Constructor
 public class Registration {
     LocalDate dateStart;
     String status;

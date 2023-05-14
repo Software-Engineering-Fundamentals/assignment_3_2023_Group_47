@@ -1,7 +1,9 @@
+// Period is used to calculate the time difference between two times
 import java.time.Period;
 import java.time.LocalDate;
 
 public class User {
+    // Example registration of a trainee for a method later
     public static Registration trainee1Registration = new Registration(LocalDate.of(2023, 5, 15), LocalDate.of(2020,4,20), "Enrolled");
     String ID;
     String username;
@@ -13,6 +15,8 @@ public class User {
     String email;
     String eContact;
     String eContactNumber;
+
+    // Constructor
     public User(String uID,String uUsername,String uPassword,String uName,String uDOB,String uAddress,String uPhoneNumber,String uEmail,String uEContact,String uEContactNumber){
         ID = uID;
         username = uUsername;
@@ -26,7 +30,7 @@ public class User {
         eContactNumber = uEContactNumber;
     }
 
-    // get user details
+    // Getters
     public String getID(){
         return ID;
     }
@@ -55,18 +59,21 @@ public class User {
         return eContactNumber;
     }
 
+    // Sends request to cancel registration:
     public Boolean cancelRegistration(){
         System.out.println("(trainee) Request to unenrol has been sent to the Finance Manager.\n");
         String uID = getID();
         System.out.printf("(fManager) A request to unenrol has been recieved by a trainee [%S].\n\n", uID);
         String refundOption = "y";
         System.out.println("(trainee) Would you like to additionally send a request for a refund? (y/n)");
+        // Boolean ensures two options and no other ones:
         Boolean ynvalid = false;
         while (ynvalid != true){
             if (refundOption == "y" || refundOption == "n"){
                 ynvalid = true;
             }
             if (refundOption == "y"){
+                // Confirmation has been given; the next method is called
                 requestRefund(uID);
                 return true;
             }
@@ -74,20 +81,22 @@ public class User {
         return false;
     }
 
+    // Trainee sends a request to recieve a refund:
     public void requestRefund(String traineeID){
         System.out.println("(trainee) A refund request has been sent.\n");
         System.out.printf("(fManager) This request also involves refund eligibility [%S].\n\n", traineeID);
     }
 
+    // The Finance Manager is able to refund the trainee if they are eligible:
     public void refundTrainee(String traineeID){
         Refund trainee1Refund = new Refund("T000001", 59.99, LocalDate.now());
         System.out.printf("(trainee, fManager) %S has been refunded $%,.2f.\n", traineeID, trainee1Refund.amount);
-     }
+    }
 
+    // Checks if the trainee is eligible for a refund based on the request time; they are deemed eligible if the request is made 24 hours before the classes start:
     public Boolean checkRefundEligibility(Registration traineeReg){
         Period timePeriod = Period.between( LocalDate.now(), traineeReg.dateStart);
-        double days = timePeriod.getDays();
-        
+        int days = timePeriod.getDays();
         if (days >= 1) {
             return true;
         } else {
@@ -95,6 +104,7 @@ public class User {
         }
     }
 
+    // the trainee is unenrolled by the Finance Manager:
     public Boolean unenrolTrainee(String trainee1ID){
         trainee1Registration.status = "Unenrolled";
         Boolean unenrolEligibility = checkRefundEligibility(trainee1Registration);
