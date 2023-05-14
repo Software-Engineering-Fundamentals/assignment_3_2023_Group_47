@@ -103,7 +103,7 @@ public class User {
         trainee1Registration.status = "Unenrolled";
         String trainee1ID = "T000001";
         Boolean unenrolEligibility = checkRefundEligibility(trainee1ID, trainee1Registration);
-        if (unenrolEligibility = true){
+        if (unenrolEligibility == true){
             System.out.printf("(trainee, fManager) %S is eligible for a refund.\n", trainee1ID); // The Finance Manager is notified of the request
             refundTrainee("T000001");
             return true;

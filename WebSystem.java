@@ -21,14 +21,14 @@ public class WebSystem {
       scenario1(); // Setting up for the first scenario (Users defined)
       
       Boolean cancelRequest = trainee1.cancelRegistration(); // The trainee sends a request to cancel their registration.
-      if (cancelRequest = true){
+      if (cancelRequest == true){
          System.out.println("(trainee) Unenrolment has been requested.");
       } else {
          System.out.println("(trainee) Registration has not been requested. If this situation is unintentional, please contact the Finance Manager."); // if something goes wrong or a vital method returns false, the trainee is notified and nothing happens. This also may appear if the trainee changes their mind later in the program.
       }
 
       Boolean unenrolAttempt = fManager.unenrolTrainee();
-      if (unenrolAttempt = true){
+      if (unenrolAttempt == true){
          System.out.printf("(trainee, fManager) Trainee %S has been unenrolled from their current course.\n", trainee1.getID());
       } else {
          System.out.println("(trainee) Registration has not been cancelled. If this situation is unintentional, please contact the Finance Manager."); // if something goes wrong or a vital method returns false, the trainee is notified and nothing happens. This also may appear if the trainee changes their mind later in the program.
