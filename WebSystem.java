@@ -29,7 +29,7 @@ public class WebSystem {
       scenario1();
       
       Boolean cancelRequest = trainee1.cancelRegistration();
-      if (cancelRequest === false){
+      if (cancelRequest == false){
          System.out.println("(trainee) Registration has not been requested. If this situation is unintentional, please contact the Finance Manager.");
       }
 
@@ -43,7 +43,7 @@ public class WebSystem {
       System.out.println();
       scenario2();
 
-      
-      
+
+
    }
 }
