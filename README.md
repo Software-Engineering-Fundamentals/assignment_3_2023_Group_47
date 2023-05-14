@@ -4,7 +4,7 @@
 This project is a simple Java application that represents a system where users, such as a trainee and a finance manager or manager, can interact. The system handles operations like unenrollment from courses and refund requests. The users and their interactions are represented through objects and methods in the code.
 
 ## **Project Structure**
-The project consists of four Java classes:
+The project consists of five Java classes:
 
 1. **'WebSystem.java':** This is the main class where the system is instantiated and the scenarios are executed.
 2. **'User.java':** This class represents a user in the system and contains methods for actions that a user can perform, such as cancelling       registration, requesting refunds, and unenrolling from courses.
