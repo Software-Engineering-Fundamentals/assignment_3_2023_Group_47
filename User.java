@@ -55,16 +55,15 @@ public class User {
         return eContactNumber;
     }
 
-    // Cancel the trainee's registration:
     public Boolean cancelRegistration(){
-        System.out.println("(trainee) Request to unenrol has been sent to the Finance Manager."); // The trainee is notified of the request
+        System.out.println("(trainee) Request to unenrol has been sent to the Finance Manager.\n");
         String uID = getID();
-        System.out.printf("(fManager) A request to unenrol has been given by a trainee [%S].\n", uID); // The Finance Manager is notified of the request
+        System.out.printf("(fManager) A request to unenrol has been given by a trainee [%S].\n\n", uID);
         String refundOption = "y";
-        System.out.println("(trainee) Would you like to additionally send a request for a refund? (y/n)"); // The trainee can choose to send a request for a refund as well
+        System.out.println("(trainee) Would you like to additionally send a request for a refund? (y/n)");
         try {
             if (refundOption == "y"){
-                requestRefund(uID); // Send refund request
+                requestRefund(uID);
             } else {
                 // Don't send request
             }
@@ -74,10 +73,9 @@ public class User {
         }
     }
 
-    // trainee requests refund
     public void requestRefund(String traineeID){
-        System.out.println("(trainee) A refund request has been sent."); // The Finance Manager is notified of the request
-        System.out.printf("(fManager) This request also involves refund eligibility [%S].\n", traineeID); // The Finance Manager is notified of the request
+        System.out.println("(trainee) A refund request has been sent.\n");
+        System.out.printf("(fManager) This request also involves refund eligibility [%S].\n\n", traineeID);
     }
 
     public void refundTrainee(String traineeID){
@@ -85,7 +83,6 @@ public class User {
         System.out.printf("(trainee, fManager) %S has been refunded $%,.2f.\n", traineeID, trainee1Refund.amount);
      }
 
-    // method to check for refund eligibility
     public Boolean checkRefundEligibility(String traineeID, Registration traineeReg){
         Period timePeriod = Period.between(traineeReg.dateStart, traineeReg.dateFinish);
         int months = timePeriod.getMonths();
@@ -98,13 +95,12 @@ public class User {
         }
     }
 
-    // Finance Manager unenrols Trainee from course
     public Boolean unenrolTrainee(){
         trainee1Registration.status = "Unenrolled";
         String trainee1ID = "T000001";
         Boolean unenrolEligibility = checkRefundEligibility(trainee1ID, trainee1Registration);
-        if (unenrolEligibility = true){
-            System.out.printf("(trainee, fManager) %S is eligible for a refund.\n", trainee1ID); // The Finance Manager is notified of the request
+        if (unenrolEligibility == true){
+            System.out.printf("(trainee, fManager) %S is eligible for a refund.\n", trainee1ID);
             refundTrainee("T000001");
             return true;
         } else {
