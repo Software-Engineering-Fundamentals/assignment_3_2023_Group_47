@@ -1,5 +1,10 @@
 public class Refund {
     String mode;
-    float amount;
+    double amount;
     String date;
+    public Refund(String refMode, double refAmount, String refDate){
+        mode = refMode;
+        amount = refAmount;
+        date = refDate;
+    }
 }
