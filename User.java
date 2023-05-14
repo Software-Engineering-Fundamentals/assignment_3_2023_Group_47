@@ -2,7 +2,7 @@ import java.time.Period;
 import java.time.LocalDate;
 
 public class User {
-    public static Registration trainee1Registration = new Registration(LocalDate.of(2020, 3, 20), LocalDate.of(2020,4,20), "Enrolled");
+    public static Registration trainee1Registration = new Registration(LocalDate.of(2023, 5, 15), LocalDate.of(2020,4,20), "Enrolled");
     String ID;
     String username;
     String password;
@@ -61,16 +61,17 @@ public class User {
         System.out.printf("(fManager) A request to unenrol has been given by a trainee [%S].\n\n", uID);
         String refundOption = "y";
         System.out.println("(trainee) Would you like to additionally send a request for a refund? (y/n)");
-        try {
+        Boolean ynvalid = false;
+        while (ynvalid != true){
+            if (refundOption == "y" || refundOption == "n"){
+                ynvalid = true;
+            }
             if (refundOption == "y"){
                 requestRefund(uID);
-            } else {
-                // Don't send request
+                return true;
             }
-            return true;
-        } catch (Exception e){
-            return false;
         }
+        return false;
     }
 
     public void requestRefund(String traineeID){
@@ -84,11 +85,10 @@ public class User {
      }
 
     public Boolean checkRefundEligibility(String traineeID, Registration traineeReg){
-        Period timePeriod = Period.between(traineeReg.dateStart, traineeReg.dateFinish);
-        int months = timePeriod.getMonths();
-        int totaldays = (months*30) + timePeriod.getDays();
+        Period timePeriod = Period.between( LocalDate.now(), traineeReg.dateStart);
+        double days = timePeriod.getDays();
         
-        if (totaldays >= 14) {
+        if (days >= 1) {
             return true;
         } else {
             return false;
@@ -104,7 +104,7 @@ public class User {
             refundTrainee("T000001");
             return true;
         } else {
-            System.out.printf("(fManager) %S is ineligible for a refund.\n", trainee1ID);
+            System.out.printf("(trainee, fManager) %S is ineligible for a refund.\n", trainee1ID);
             return false;
         }
     }

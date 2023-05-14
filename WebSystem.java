@@ -1,7 +1,18 @@
 public class WebSystem {
 
-   public static User trainee1 = new User("T000001", "dCross", "trainee1Password", "Damian Cross", "01/01/2001", "20 Geometry Avenue", "1234567890", "dcross@gmail.com", "Matilda Cross", "1029384756");
-   public static User fManager = new User("F000001", "aMenger", "staffPassword", "Alice Menger", "02/02/2003", "10 Trigonometry Boulevard", "0987654321", "amenger@gmail.com", "David Menger", "6574839201");
+   static String tID = "T000001", fmID = "F000001";
+   static String tUsername = "dCross", fmUsername = "aMenger";
+   static String tPassword = "trainee1Password", fmPassword = "staffPassword";
+   static String tName = "Damian Cross", fmName = "Alice Menger";
+   static String tDOB = "01/01/2001", fmDOB = "02/02/2003";
+   static String tAddress = "20 Geometry Avenue", fmAddress = "10 Trigonometry Boulevard";
+   static String tPhoneNumber = "1234567890", fmPhoneNumber = "0987654321";
+   static String tEmail = "dcross@gmail.com", fmEmail = "amenger@gmail.com";
+   static String tEContact = "Matilda Cross", fmEContact = "David Menger";
+   static String tEContactNumber = "1029384756", fmEContactNumber = "6574839201";
+
+   public static User trainee1 = new User(tID, tUsername, tPassword, tName, tDOB, tAddress, tPhoneNumber, tEmail, tEContact, tEContactNumber);
+   public static User fManager = new User(fmID, fmUsername, fmPassword, fmName, fmDOB, fmAddress, fmPhoneNumber, fmEmail, fmEContact, fmEContactNumber);
 
 
    public static void scenario1(){
