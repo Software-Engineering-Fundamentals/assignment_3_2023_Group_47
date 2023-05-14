@@ -1,8 +1,10 @@
+import java.time.LocalDate;
+
 public class Refund {
     String mode;
     double amount;
-    String date;
-    public Refund(String refMode, double refAmount, String refDate){
+    LocalDate date;
+    public Refund(String refMode, double refAmount, LocalDate refDate){
         mode = refMode;
         amount = refAmount;
         date = refDate;

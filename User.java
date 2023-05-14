@@ -58,7 +58,7 @@ public class User {
     public Boolean cancelRegistration(){
         System.out.println("(trainee) Request to unenrol has been sent to the Finance Manager.\n");
         String uID = getID();
-        System.out.printf("(fManager) A request to unenrol has been given by a trainee [%S].\n\n", uID);
+        System.out.printf("(fManager) A request to unenrol has been recieved by a trainee [%S].\n\n", uID);
         String refundOption = "y";
         System.out.println("(trainee) Would you like to additionally send a request for a refund? (y/n)");
         Boolean ynvalid = false;
@@ -80,11 +80,11 @@ public class User {
     }
 
     public void refundTrainee(String traineeID){
-        Refund trainee1Refund = new Refund("T000001", 59.99, "20");
+        Refund trainee1Refund = new Refund("T000001", 59.99, LocalDate.now());
         System.out.printf("(trainee, fManager) %S has been refunded $%,.2f.\n", traineeID, trainee1Refund.amount);
      }
 
-    public Boolean checkRefundEligibility(String traineeID, Registration traineeReg){
+    public Boolean checkRefundEligibility(Registration traineeReg){
         Period timePeriod = Period.between( LocalDate.now(), traineeReg.dateStart);
         double days = timePeriod.getDays();
         
@@ -95,10 +95,9 @@ public class User {
         }
     }
 
-    public Boolean unenrolTrainee(){
+    public Boolean unenrolTrainee(String trainee1ID){
         trainee1Registration.status = "Unenrolled";
-        String trainee1ID = "T000001";
-        Boolean unenrolEligibility = checkRefundEligibility(trainee1ID, trainee1Registration);
+        Boolean unenrolEligibility = checkRefundEligibility(trainee1Registration);
         if (unenrolEligibility == true){
             System.out.printf("(trainee, fManager) %S is eligible for a refund.\n", trainee1ID);
             refundTrainee("T000001");

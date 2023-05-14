@@ -24,15 +24,26 @@ public class WebSystem {
       System.out.println();
    }
    
-   public static User trainee2 = new User("T000002", "cAddams", "trainee2Password", "Cora Addams", "03/19/1995", "18 Angle Street", "2394593645", "caddams@gmail.com", "Hayden Addams", "8564835493");
-   public static User Manager = new User("M001", "nTorres", "managerPassword", "Nicola Torres", "02/02/1996", "164 Side Road", "6849432646", "ntorres@gmail.com", "Ava Torres", "6420364926");
+   static String t2ID = "T000002", mID = "M001";
+   static String t2Username = "cAddams", mUsername = "nTorres";
+   static String t2Password = "trainee2Password", mPassword = "managerPassword";
+   static String t2Name = "Cora Addams", mName = "Nicola Torres";
+   static String t2DOB = "03/19/1995", mDOB = "02/02/1996";
+   static String t2Address = "18 Angle Street", mAddress = "164 Side Road";
+   static String t2PhoneNumber = "2394593645", mPhoneNumber = "6849432646";
+   static String t2Email = "caddams@gmail.com", mEmail = "ntorres@gmail.com";
+   static String t2EContact = "Hayden Addams", mEContact = "Ava Torres";
+   static String t2EContactNumber = "8564835493", mEContactNumber = "6420364926";
+
+   public static User trainee2 = new User(t2ID, t2Username, t2Password, t2Name, t2DOB, t2Address, t2PhoneNumber, t2Email, t2EContact, t2EContactNumber);
+   public static User manager = new User(mID, mUsername, mPassword, mName, mDOB, mAddress, mPhoneNumber, mEmail, mEContact, mEContactNumber);
 
    public static void scenario2(){
       System.out.println("------------------------\n\tScenario 2\n------------------------");
       System.out.print("Trainee created\nID: ");
       System.out.println(trainee2.getID());
       System.out.print("Manager created\nID: ");
-      System.out.println(Manager.getID());
+      System.out.println(manager.getID());
       System.out.println();
    }
 
@@ -44,7 +55,7 @@ public class WebSystem {
          System.out.println("(trainee) Registration has not been requested. If this situation is unintentional, please contact the Finance Manager.");
       }
 
-      Boolean unenrolAttempt = fManager.unenrolTrainee();
+      Boolean unenrolAttempt = fManager.unenrolTrainee(trainee1.ID);
       if (unenrolAttempt == true){
          System.out.printf("(trainee, fManager) Trainee %S has been unenrolled from their current course.\n", trainee1.getID());
       } else {
@@ -54,7 +65,25 @@ public class WebSystem {
       System.out.println();
       scenario2();
 
-
+      String feedbackConfirm = "y";
+      System.out.println("(trainee2) Would you like to send feedback to the manager? (y/n)");
+      if (feedbackConfirm == "y"){
+         String enquiryID = "T000002Q0";
+         System.out.println("(trainee2) Enter text:");
+         String enquiryText = "My system keeps freezing at the embedded video in module 3, please investigate this if it is a common issue with other trainees.";
+         Enquiry trainee2Enquiry = new Enquiry(enquiryID, enquiryText, "OPEN");
+         System.out.printf("(trainee2) Feedback has been sent with the ID [%S].\n\n", trainee2Enquiry.getID());
+         String responseConfirm = "y";
+         System.out.printf("(manager) Feedback has been recieved from a user [%S]. Respond? (y/n)\n", trainee2.getID());
+         if (responseConfirm == "y"){
+            String managerResponse = trainee2Enquiry.enquiryResponse(enquiryID);
+            System.out.printf("(trainee2) A response has been returned from the manager for query %S: %s\n", trainee2Enquiry.getID(), managerResponse);
+         } else {
+            System.out.println("(manager) No response has been sent.");
+         }
+      } else {
+         System.out.println("(trainee2) Feedback not sent.");
+      }
 
    }
 }

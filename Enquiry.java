@@ -28,4 +28,11 @@ public class Enquiry {
         return status;
     }
 
+    public String enquiryResponse(String enquiryID){
+        System.out.println("(manager) Enter response:");
+            String enquiryResponse = "Thank you for your feedback. We have recieved criticism for this video embed as well, so we will fix this in the near future.";
+            System.out.println("(manager) Response has been sent to the user.\n");
+        return enquiryResponse;
+    }
+
 }
